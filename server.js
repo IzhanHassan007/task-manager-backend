@@ -11,7 +11,6 @@ dotenv.config();
 const app = express();
 
 // 🔹 MIDDLEWARE
-import cors from 'cors';
 
 const allowedOrigins = ['https://izhantaskmanager.netlify.app'];
 
