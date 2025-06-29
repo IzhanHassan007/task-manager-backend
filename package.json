@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Node.js + Express REST API for task management system.",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
