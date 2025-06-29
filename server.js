@@ -11,10 +11,13 @@ dotenv.config();
 const app = express();
 
 // 🔹 MIDDLEWARE
-const allowedOrigins = ['http://localhost:5173', 'https://izhantaskmanager.netlify.app'];
+import cors from 'cors';
+
+const allowedOrigins = ['https://izhantaskmanager.netlify.app'];
 
 app.use(cors({
   origin: function (origin, callback) {
+    // If no origin or it's in the allowed list, allow it
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
