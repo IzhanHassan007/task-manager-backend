@@ -12,19 +12,24 @@ const app = express();
 
 // 🔹 MIDDLEWARE
 
-const allowedOrigins = ['https://izhantaskmanager.netlify.app'];
-
-app.use(cors({
-  origin: function (origin, callback) {
-    // If no origin or it's in the allowed list, allow it
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
+const allowed = ['https://izhantaskmanager.netlify.app'];
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow same-origin requests (e.g. mobile, localhost, Postman)
+    if (!origin || allowed.includes(origin)) {
+      return callback(null, true);
     }
+    callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
-}));
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization'],
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Enable pre-flight for all
+
 
 app.use(express.json()); // To parse JSON in requests
 
