@@ -12,7 +12,13 @@ const app = express();
 
 // 🔹 MIDDLEWARE
 
-const allowed = ['https://izhantaskmanager.netlify.app'];
+const allowed = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'https://izhantaskmanager.netlify.app'
+];
+
+
 const corsOptions = {
   origin: (origin, callback) => {
     // Allow same-origin requests (e.g. mobile, localhost, Postman)
@@ -28,7 +34,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Enable pre-flight for all
+// app.options('/*', cors(corsOptions)); // Enable pre-flight for all
 
 
 app.use(express.json()); // To parse JSON in requests
