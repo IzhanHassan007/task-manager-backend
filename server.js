@@ -58,10 +58,8 @@ app.listen(PORT, () => {
 });
 
 // 🔹 DATABASE CONNECTION (AFTER SERVER START)
-mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(MONGO_URI)
+
 .then(() => {
   console.log('MongoDB Connected Successfully!');
 })
