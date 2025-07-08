@@ -1,3 +1,4 @@
+import asyncHandler from "express-async-handler";
 import { Task } from '../models/Task.model.js';
 
 // 🔹 Create Task
@@ -25,6 +26,21 @@ export const getTasks = async (req, res) => {
     res.json(tasks);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching tasks', error: error.message });
+  }
+};
+
+// ✅ 🔹 Get Single Task By ID (User Specific)
+export const getTaskById = async (req, res) => {
+  try {
+    const task = await Task.findOne({ _id: req.params.id, user: req.user });
+
+    if (!task) {
+      return res.status(404).json({ message: 'Task not found' });
+    }
+
+    res.json(task);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching task', error: error.message });
   }
 };
 
